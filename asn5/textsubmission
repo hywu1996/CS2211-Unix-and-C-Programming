@@ -1,0 +1,530 @@
+-------------------
+Q1a: thewords.c
+-------------------
+/*Sort a list of up to 50 words of length 20 to be entered in by the user*/
+/*HARRY WU 250797407*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_WORDS 50
+#define WORD_LENGTH 20
+
+/*
+Bubble sort function used to sort the array of words
+Receives the array to be sorted and the length of the array as arguments
+*/
+void bubbleSort(char *a[], int len) {
+	int i, j;
+	char temp[MAX_WORDS];
+
+	for(i=0; i < len; i++) {
+
+		for(j=i+1; j<len; j++) {
+
+			if(strcmp(a[i], a[j])>0){
+				strcpy(temp, a[i]);
+				strcpy(a[i], a[j]);
+				strcpy(a[j], temp);
+			}
+		}
+	}
+
+}
+
+/*
+Print an array of strings in order from beginning to end
+Receives the array to be sorted and the length of the array as arguments
+*/
+void printArray(char *a[], int len) {
+	int i;
+	for(i = 0; i < len; i++){
+		printf("%s ", a[i]);
+	}
+}
+
+/*
+main function
+*/
+int main() {
+	char **array;
+	
+	//allocate memory for an array of char pointers	
+	array = malloc( MAX_WORDS * sizeof(char*) );
+
+	int q;
+	
+	//allocate memory for each word for each char pointer
+	for(q = 0; q < MAX_WORDS; q++) {
+		array[q] = malloc( WORD_LENGTH * sizeof(char) );
+	}
+
+	int length = 0;
+	char input[WORD_LENGTH];
+
+	//take user input until nothing is entered
+	for(q = 0 ; q < MAX_WORDS; q++) {
+		printf("Enter word: ");
+		gets(input);
+
+		if(*input == NULL){
+			q=MAX_WORDS;
+			printf("\n");
+		}
+
+		else{
+			strcpy(array[q], input);;
+			length++;
+		}
+	}
+
+	//sort the list
+	bubbleSort(array, length);
+
+	printf("In sorted order: ");
+
+	//print sorted list
+	printArray(array, length);
+
+	printf("\n");
+	free(array);
+
+
+	return 0;
+
+}
+
+-------------------
+Q1b: thewords2.c
+-------------------
+
+/*Sort a list of up to 50 words of length 20 to be entered in by the user*/
+/*HARRY WU 250797407*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_WORDS 50
+#define WORD_LENGTH 20
+
+/*
+Print an array of strings in order from beginning to end
+Receives the array to be sorted and the length of the array as arguments
+*/
+void printArray(char *a[], int len) {
+	int i;
+	for(i = 0; i < len; i++){
+		printf("%s ", a[i]);
+	}
+}
+
+/*compare function to be used as an argument for qsort function*/
+int compare(const char **a, const char **b) {
+	return strcmp(*a, *b);
+}
+
+/*
+main function
+*/
+int main() {
+	char **array;
+
+	//allocate memory for an array of char pointers
+	array = malloc( MAX_WORDS * sizeof(char*) );
+
+	int q;
+
+	//allocate memory for each word for each char pointer
+	for(q = 0; q < MAX_WORDS; q++) {
+		array[q] = malloc( WORD_LENGTH * sizeof(char) );
+	}
+
+	int length = 0;
+	char input[WORD_LENGTH];
+
+	//receive input until user doesn't enter anything or until 50 words are entered
+	for(q = 0 ; q < MAX_WORDS; q++) {
+		printf("Enter word: ");
+		gets(input);
+
+		if(*input == NULL){
+			q=MAX_WORDS;
+			printf("\n");
+		}
+
+		else{
+			strcpy(array[q], input);;
+			length++;
+		}
+	}
+
+	//sort the list
+	qsort((void*) array, length, sizeof(char*), (void*)compare );
+
+	printf("In sorted order: ");
+
+	//print sorted list
+	printArray(array, length);
+
+	printf("\n");
+	free(array);
+
+
+	return 0;
+
+}
+
+-------------------
+Q2a: queue.h
+-------------------
+
+/*HARRY WU - 250797407*/
+/*Header file with prototypes and typedef for implementing a queue*/
+
+#ifndef QUEUE_H
+
+#define QUEUE_H
+#include <stdbool.h>
+
+/*typedef for what will be stored in the queue */
+typedef int Item;
+
+/*initialize an empty queue*/
+void make_empty();
+
+/*check if queue is empty*/
+bool is_empty();
+
+/*check if queue is full*/
+bool is_full();
+
+/*add an item to the queue*/
+void enqueue(Item data);
+
+/*remove an item from the queue*/
+Item dequeue();
+
+/*find the first item in the queue*/
+Item first();
+
+/*find the last item in the queue*/
+Item last();
+
+
+#endif
+
+
+-------------------
+Q2b/d: testqueue_b.c
+-------------------
+/* ARRAY IMPLMENTATION OF QUEUE - HARRY WU (250797407) */
+/* 
+Uses an array with max size of 100 to implement a queue.
+Variable 'top' stores the beginning of the queue, 'bot' stores the next available spot of the queue.
+'size' stores the number of items currently in the queue.
+*/
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include "queue.h"
+#define MAX_QUEUE_SIZE 100
+
+size_t top, bot, size;
+
+Item array[MAX_QUEUE_SIZE]; 
+
+
+//initialize an empty queue by setting all variables to 0
+void make_empty(){
+	top = 0;
+	bot = 0;
+	size = 0;
+}
+
+//check if the queue is empty (has 0 elements); returns true if empty, false otherwsise
+bool is_empty() {
+	if (size == 0) {
+		return true;
+	} 
+	else {
+		return false;
+	}
+}
+
+//check if all 100 positions of queue is occupied; returns true if full, false otherwsise
+bool is_full() {
+	if (size == MAX_QUEUE_SIZE) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void enqueue(Item data) {
+	if (!(is_full())) {
+		array[bot] = data;
+		bot = (bot+1) % MAX_QUEUE_SIZE;
+		size++;
+	}
+	else {
+		printf("Queue is full. Cannot enqueue.\n");
+	}
+}
+Item dequeue() {
+	Item temp = NULL;
+	if (is_empty()) {
+		printf("Nothing to dequeue. Queue is empty.\n");
+	}
+	else {
+		temp = array[top];
+		array[top] = NULL;
+		top = (top+1) % MAX_QUEUE_SIZE;
+		size--;
+	}
+	return temp;
+}
+
+Item first() {
+	Item temp = NULL;
+	if (!(is_empty())) {
+		temp = array[top];
+	}
+	return temp;
+}
+Item last() {
+	Item temp = NULL;
+	if (!(is_empty())) {
+		temp = array[bot-1];
+	}
+	return temp;
+}
+
+
+int main() {
+	printf("Array Implmentation of a Queue\n------------------------\n\n");
+
+	make_empty();
+	
+	enqueue(45);
+	enqueue(67);
+	enqueue(78);
+	enqueue(34);
+	enqueue(675);
+	enqueue(23);
+	enqueue(756);
+	
+	printf("Dequeue 2 numbers:\n");
+	printf("%d\n", dequeue());
+	printf("%d\n", dequeue());
+
+	enqueue(42);
+
+	printf("Dequeue the rest of the numbers on the queue:\n");
+	Item DQdata = dequeue();
+	while(DQdata != NULL){
+		printf("%d\n", DQdata);
+		DQdata = dequeue();
+	}
+	return 0;
+}
+
+
+-------------------
+Q2c/d: testqueue_c.c
+-------------------
+
+/* LINK-LIST IMPLEMENTATION OF A QUEUE - HARRY WU (250797407) */
+/* 
+Uses a linked list up to 100 nodes to implement a queue. Each node stores that data item as well as a pointer to the next node.
+Variable 'top' stores the beginning of the queue, 'bot' stores the next available spot of the queue.
+'size' stores the number of items currently in the queue.
+*/
+#include "queue.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+
+#define MAX_QUEUE_SIZE 100
+
+//a node of the linked list. stores the data item and a pointer to the next node.
+struct Node {
+	Item data;
+	struct Node *next;
+};
+
+struct Node* top;
+struct Node* bot;
+size_t size; 
+
+
+//set the pointer of the first and last element to null. initialiizes and empty queue
+void make_empty(void) {
+	top = NULL;
+	bot = NULL;
+}
+
+//check if the queue is empty (has 0 elements); returns true if empty, false otherwsise
+bool is_empty(void) {
+	if (size == 0 || top == NULL || bot == NULL) {
+		return true;
+	} 
+	else {
+		return false;
+	}
+}
+
+//check if all 100 positions of queue is occupied; returns true if full, false otherwsise
+bool is_full(void) {
+	if (size == MAX_QUEUE_SIZE) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+//add an item to the back of the queue
+void enqueue(Item i) {
+	struct Node *newNode = (struct Node*) malloc(sizeof(struct Node));
+	newNode->data = i;
+	newNode->next = NULL;
+	if(is_empty()){
+		top = bot = newNode;
+		size += 1;
+		return;
+	}
+	else if (!is_full()){
+		bot->next = newNode;
+		bot = newNode;
+		size += 1;
+	}
+	else {
+		printf("Queue is full. Cannot enqueue.\n");
+	}
+
+}
+
+//remove and return the item at the front of the queue
+Item dequeue(void) {
+	struct Node *temp = top;
+	
+	if (is_empty()) {
+		printf("Nothing to dequeue. Queue is empty.\n");
+		return NULL;
+	}
+	else if (top == bot) {
+		top = NULL;
+		bot = NULL;
+		size--;
+	}
+	else {
+		top = top->next;
+		size--;
+	}
+
+	Item deq = temp->data;
+	free(temp);
+	return deq;
+}
+
+//return the first item in the queue
+Item first(void) {
+	Item temp = NULL;
+
+	if (!(is_empty())) {
+		temp = top->data;
+	}
+
+	return temp;
+}
+
+//return the last item in the queue
+Item last(void) {
+	Item temp = NULL;
+
+	if (!(is_empty())) {
+		temp = bot->data;
+	}
+
+	return temp;
+}
+
+//main function: test enqueue and dequeue
+int main() {
+	printf("Link-List Implmentation of a Queue\n------------------------\n\n");
+
+	make_empty();
+	
+	enqueue(45);
+	enqueue(67);
+	enqueue(78);
+	enqueue(34);
+	enqueue(675);
+	enqueue(23);
+	enqueue(756);
+	
+	printf("Dequeue 2 numbers:\n");
+	printf("%d\n", dequeue());
+	printf("%d\n", dequeue());
+
+	enqueue(42);
+
+	printf("Dequeue the rest of the numbers on the queue:\n");
+	Item DQdata = dequeue();
+	while(DQdata != NULL){
+		printf("%d\n", DQdata);
+		DQdata = dequeue();
+	}
+
+	return 0;
+
+}
+
+
+-------------------
+Q3: printarray.c
+-------------------
+
+/* printarray.c - HARRY WU (250797407) */
+/*
+Prints the value and address from an array with 9 values
+*/
+
+
+#include <stdio.h>
+int main( )
+{
+ 	int i;
+
+ 	//3d. Rewrite arr as pointer (and initialize with the same integer values)
+ 	int *arr;
+ 	arr = (int[9]) { 12, 23, 34, 45, 56, 67, 78, 89, 90 };
+
+ 	// 3a. Introduce int *p and point it to arr
+ 	int *p;
+ 	p = &arr[0];
+
+ 	// print the value and the address of each element of array
+	for ( i = 0 ; i < 9 ; i++ )
+	{
+		//3b. Rewrite printf fucntion to use *p instead of arr[i]
+		printf("arr[%d]: value is %d and address is %d\n", i, p[i], &p[i]);	
+	}
+
+	printf("\n\n");
+
+	//3c. printf using pointer *p and using pointer arithmatic
+	int *q;
+	q = &arr[0];
+	for (p; p < &arr[9]; p++) {
+		printf("arr[%d]: value is %d and address is %d\n", p-q, *p, p);
+	}
+
+
+	return 0;
+}

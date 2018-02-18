@@ -1,0 +1,12 @@
+Script started on Tue Sep 26 00:04:34 2017
+[ywu582@obelix asn1]$ mkdir public_html
+[ywu582@obelix asn1]$ ls -ld public_html
+drwx------   2 ywu582          2 Sep 26 00:04 public_html
+[ywu582@obelix asn1]$ chmod u-r,g-x public_html
+[ywu582@obelix asn1]$ ls public_html
+public_html unreadable
+[ywu582@obelix asn1]$ chmod u+rwx,g=x,o=x public_html
+[ywu582@obelix asn1]$ exit
+exit
+
+script done on Tue Sep 26 00:05:39 2017

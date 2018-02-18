@@ -1,0 +1,20 @@
+Script started on Tue Sep 26 00:07:24 2017
+[ywu582@obelix asn1]$ mkdir Mydir1
+[ywu582@obelix asn1]$ cd Mydir1
+[ywu582@obelix Mydir1]$ touch intro n1 book2 page1 page3 page3b n2 book3 Book3 P age1a Page3a
+[ywu582@obelix Mydir1]$ ls -1 | grep '^[Bb]ook'
+Book3
+book2
+book3
+[ywu582@obelix Mydir1]$ ls -1 | grep '[0-9]$'
+Book3
+book2
+book3
+n1
+n2
+page1
+page3
+[ywu582@obelix Mydir1]$ exit
+exit
+
+script done on Tue Sep 26 00:08:49 2017

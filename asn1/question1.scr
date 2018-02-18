@@ -1,0 +1,57 @@
+Script started on Sun Sep 24 02:05:46 2017
+[ywu582@obelix asn1]$ who am i
+ywu582     /dev/pts/21  Sep 24 02:05
+[ywu582@obelix asn1]$ date
+Sun Sep 24 02:05:57 EDT 2017
+[ywu582@obelix asn1]$ pwd
+/gaul/s1/student/2016/ywu582/cs2211a/asn1
+[ywu582@obelix asn1]$ ls -al ~
+total 98
+drwxrwx---  24 ywu582         44 Sep 22 01:29 .
+dr-xr-xr-x  11 root           11 Sep 24 02:03 ..
+-rw-------   1 ywu582        386 Sep 19 11:43 .ICEauthority
+drwxrwxr-x   3 ywu582          3 Sep 19 11:43 .WebStorm8
+-rw-------   1 ywu582        272 Sep 19 12:35 .Xauthority
+-rwxr-xr-x   1 ywu582       1955 Sep 21 10:40 .Xdefaults
+-rwxr-xr-x   1 ywu582       2365 Sep 21 10:40 .alias.rs6000
+lrwxrwxrwx   1 ywu582         41 Sep 21 10:40 .alias.sun4 -> /gaul/s1/student/2016/ywu582/.alias.sun4m
+-rwxr-xr-x   1 ywu582       2435 Sep 21 10:40 .alias.sun4m
+lrwxrwxrwx   1 ywu582         41 Sep 21 10:40 .alias.sun4u -> /gaul/s1/student/2016/ywu582/.alias.sun4m
+-rw-------   1 ywu582        940 Sep 24 02:03 .bash_history
+drwxrwxr-x   8 ywu582         10 Sep 19 11:53 .cache
+drwx------  16 ywu582         18 Sep 19 11:58 .config
+-rwxr-xr-x   1 ywu582       3508 Sep 21 10:40 .cshrc
+drwx------   3 ywu582          3 Sep 19 11:43 .dbus
+-rwx------   1 ywu582         26 Sep 21 10:40 .dmrc
+-rw-------   1 ywu582         26 Sep 21 10:40 .dmrc.17-09-21
+-rwxr-xr-x   1 ywu582       1623 Sep 21 10:40 .emacs
+drwx------   4 ywu582          4 Sep 19 12:25 .gconf
+drwx------   2 ywu582          3 Sep 19 12:26 .gconfd
+drwx------   3 ywu582          3 Sep 19 11:58 .gnome
+drwx------   3 ywu582          5 Sep 19 12:25 .gnome2
+drwx------   2 ywu582          2 Sep 19 10:50 .gnome2_private
+drwxr-xr-x   3 ywu582          3 Sep 19 11:43 .local
+-rwxr-xr-x   1 ywu582       1096 Sep 21 10:40 .login
+drwx------   4 ywu582          4 Sep 19 11:53 .mozilla
+-rwxr-xr-x   1 ywu582       3352 Sep 21 10:40 .mwmrc
+drwx------   3 ywu582          3 Sep 19 11:52 .pki
+-rwxr-xr-x   1 ywu582        796 Sep 21 10:40 .profile
+-rw-------   1 ywu582        271 Sep 19 12:26 .recently-used
+drwx------   2 ywu582          3 Sep 19 11:44 .ssh
+-rwxr-xr-x   1 ywu582         20 Sep 21 10:40 .tcshrc
+-rwxr-xr-x   1 ywu582       1540 Sep 21 10:40 .twmrc
+-rwxr-xr-x   1 ywu582       1464 Sep 21 10:40 .xsession
+-rw-------   1 ywu582      18245 Sep 19 12:36 .xsession-errors
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Desktop
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Documents
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Downloads
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Music
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Pictures
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Public
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Templates
+drwxr-xr-x   2 ywu582          2 Sep 19 11:43 Videos
+drwxr-xr-x   4 ywu582          4 Sep 24 01:59 cs2211a
+[ywu582@obelix asn1]$ exit
+exit
+
+script done on Sun Sep 24 02:06:16 2017
